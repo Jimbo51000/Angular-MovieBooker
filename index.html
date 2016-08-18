@@ -1,0 +1,95 @@
+<html>
+<head>
+	<title>Movie Test</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.2/ui-bootstrap.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.2/ui-bootstrap-tpls.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="mycss.css">
+	<link rel="stylesheet" type="text/css" href="logincss.css">
+</head>
+<body >
+
+	<!-- Nav bar for navigation  --> <!--  BootStrap default  -->
+	<div id="navContainer" ng-app="movieNavApp" >
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid" ng-controller="LoginInitCntrl">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">MovieBooker</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Movies</a></li>
+					<li><a href="#">Page 1</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right" >
+					<li><button class="btn" ng-click="signUp()"><span class="glyphicon glyphicon-user"></span> Sign Up</button></li>
+					<li><button class="btn" ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> Login</button></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div ng-app="movieBodyapp"  class="container" ng-controller="InitLoadCntrl" >
+
+
+		<div class="row" style="height:50px ;">
+			<div class="col-md-12"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="panel panel-default" >
+					<div class="panel-heading " style="background-color: #9E9E9E;"><h2>Movies</h2></div>
+					
+					<!-- Removed the panel body to merge the list-group with the panel -->
+					<div id="movieContainer" class="list-group" >
+						<div class="list-group-item" ng-repeat="movie in movies" ng-controller="MovieClickCntrl" ng-click="open(movie)" ng-mouseenter="setColor()" ng-mouseleave="resetColor()" ng-style="hovercolor">
+							<button ng-click="remove(movie);$event.stopPropagation()" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+							<span>{{movie.name}}</span>
+						</div>
+					</div>
+
+
+
+					
+					<div class="panel-footer">
+						<div class="input-group" ng-controller="AddMovieCntrl">
+							<input type="text" class="form-control" placeholder="Enter new movie" ng-model="newMovie">
+							<span class="input-group-btn">
+								<button  class="btn btn-info btn-sm" ng-click="add()">
+									<span class="glyphicon glyphicon-plus"></span> Add
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+
+
+		<div ng-show="hasModalClosed()" class="alert alert-success">
+			<button class="close" data-dismiss="alert" aria-label="close">&times;</button>
+			<strong>Congrats!</strong> <span > for {{selectedMovie.seats}} seats for the movie {{selectedMovie.name}}</span>
+		</div>
+
+
+		
+	</div>
+
+
+
+	<script type="text/javascript" src="utilJS.js"></script>
+	<script type="text/javascript" src="movieJS.js"></script>
+	<script type="text/javascript" src="movieNavJS.js"></script>
+</body>
+</html>

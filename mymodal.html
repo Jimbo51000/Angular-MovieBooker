@@ -1,0 +1,29 @@
+<div class="modal-dialog modal-lg">
+	<div class="modal-header">
+		<h3 class="modal-title">Select you movie seats</h3>
+	</div>
+	<div class="modal-body">
+		<div class="container">
+			<div class="form-group-row">
+				<label class="col-md-12">Hi , Do you like <strong>{{selectedMovie.name}}? </strong></label>
+			</div>
+			<div class="form-group row">
+				
+				<div class="col-md-3">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Seats</span>
+						<input type="number" class="form-control" ng-model="selectedMovie.seats" aria-describedby="basic-addon1" id="example-number-input" value="1"></input>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group-row">
+				<label class="col-md-12 col-form-label"><span>You have selected {{selectedMovie.seats}} seats</span></label>
+		</div>
+		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+		<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

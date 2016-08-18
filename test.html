@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="plunker" >
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS Plunker</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+    <input ng-model="obj.name">
+
+    <my-directive obj="obj" title="{{title}}">
+
+      </my-directive>
+    <script type="text/javascript">
+        var app = angular.module('plunker', []);
+
+        app.controller('MainCtrl', function ($scope) {
+            $scope.obj = { name: "John", surname: "Doe" };
+            $scope.title = { name: 'abc' };
+        });
+
+
+         app.directive('myDirective', function () {
+        return {
+            restrict: 'E',
+            template: "<div><span>{{obj.name}}<span><span>{{title}}<span></div>",
+            replace: true,
+            scope: { title: '@', obj: '=' },
+            link: function (scope, element, attrs) {
+                attrs.$observe('title', function (value) {
+                    alert(scope.$eval(value).name);
+                })
+
+
+            }
+        }
+    })
+    </script>
+</body>
+</html>
