@@ -1,0 +1,27 @@
+<!-- login modal form -->
+
+<div class="modal-dialog modal-lg">
+	<div class="modal-header"> 
+		<h3 class="modal-title">Login</h3>
+	</div>
+	<div class="modal-body">
+
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">UserName</span>
+			<input type="text" class="form-control" ng-model="user.name" aria-describedby="basic-addon1"  ></input>
+
+		</div>
+
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Password</span>
+			<input type="password" class="form-control" ng-model="user.password" aria-describedby="basic-addon1" ></input>
+
+		</div>
+
+		<span>hi {{user.name}} , {{user.password}}</span>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="button" ng-click="submit()">Login</button>
+		<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

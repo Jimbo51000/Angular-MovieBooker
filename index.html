@@ -2,6 +2,7 @@
 <head>
 	<title>Movie Test</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.2/ui-bootstrap.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.2/ui-bootstrap-tpls.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
@@ -12,15 +13,16 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="mycss.css">
-	<link rel="stylesheet" type="text/css" href="logincss.css">
+
+	<link rel="stylesheet" type="text/css" href="/css/mycss.css">
+
 </head>
-<body >
+<body ng-app="rootApp">
 
 	<!-- Nav bar for navigation  --> <!--  BootStrap default  -->
 	<div id="navContainer" ng-app="movieNavApp" >
 		<nav class="navbar navbar-inverse">
-			<div class="container-fluid" ng-controller="LoginInitCntrl">
+			<div class="container-fluid" >
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#">MovieBooker</a>
 				</div>
@@ -29,7 +31,7 @@
 					<li><a href="#">Page 1</a></li>
 
 				</ul>
-				<ul class="nav navbar-nav navbar-right" >
+				<ul class="nav navbar-nav navbar-right" ng-controller="LoginCntrl">
 					<li><button class="btn" ng-click="signUp()"><span class="glyphicon glyphicon-user"></span> Sign Up</button></li>
 					<li><button class="btn" ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> Login</button></li>
 				</ul>
@@ -37,14 +39,14 @@
 		</nav>
 	</div>
 
-	<div ng-app="movieBodyapp"  class="container" ng-controller="InitLoadCntrl" >
+	<div ng-app="movieBookingApp"  class="container" ng-controller="InitLoadCntrl" >
 
 
 		<div class="row" style="height:50px ;">
 			<div class="col-md-12"></div>
 		</div>
 
-		<div class="row">
+		<div class="row" id="mainMovieList" ng-controller="MovieListCntrl">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<div class="panel panel-default" >
@@ -52,7 +54,7 @@
 					
 					<!-- Removed the panel body to merge the list-group with the panel -->
 					<div id="movieContainer" class="list-group" >
-						<div class="list-group-item" ng-repeat="movie in movies" ng-controller="MovieClickCntrl" ng-click="open(movie)" ng-mouseenter="setColor()" ng-mouseleave="resetColor()" ng-style="hovercolor">
+						<div  class="list-group-item" ng-repeat="movie in movies" ng-controller="BookingItemCntrl" ng-click="open(movie)" ng-mouseenter="setColor()" ng-mouseleave="resetColor()" ng-style="hovercolor">
 							<button ng-click="remove(movie);$event.stopPropagation()" class="close" data-dismiss="alert" aria-label="close">&times;</button>
 							<span>{{movie.name}}</span>
 						</div>
@@ -62,7 +64,7 @@
 
 					
 					<div class="panel-footer">
-						<div class="input-group" ng-controller="AddMovieCntrl">
+						<div class="input-group" >
 							<input type="text" class="form-control" placeholder="Enter new movie" ng-model="newMovie">
 							<span class="input-group-btn">
 								<button  class="btn btn-info btn-sm" ng-click="add()">
@@ -88,8 +90,15 @@
 
 
 
-	<script type="text/javascript" src="utilJS.js"></script>
-	<script type="text/javascript" src="movieJS.js"></script>
-	<script type="text/javascript" src="movieNavJS.js"></script>
+	<script type="text/javascript" src="/js/utilJS.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+
+	<script type="text/javascript" src="/modules/movieBooking/controller/initController.js"></script>
+	<script type="text/javascript" src="/modules/movieBooking/controller/movieListController.js"></script>
+	<script type="text/javascript" src="/modules/movieBooking/controller/bookingItemController.js"></script>
+	<script type="text/javascript" src="/modules/movieBooking/controller/bookingModalController.js"></script>
+
+	<script type="text/javascript" src="/modules/movieNavBar/controller/loginController.js"></script>
+	<script type="text/javascript" src="/modules/movieNavBar/controller/loginModalController.js"></script>
 </body>
 </html>
